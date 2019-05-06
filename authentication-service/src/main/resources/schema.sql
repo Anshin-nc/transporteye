@@ -1,21 +1,75 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS user_roles;
 
-CREATE  TABLE users (
-  user_name VARCHAR(100) NOT NULL ,
-  password VARCHAR(100) NOT NULL ,
-  enabled boolean NOT NULL ,
-  PRIMARY KEY (user_name));
 
-CREATE TABLE user_roles (
-  user_role_id SERIAL,
-  user_name varchar(100) NOT NULL,
-  role varchar(100) NOT NULL,
-  PRIMARY KEY (user_role_id));
 
-INSERT INTO users(user_name,password,enabled) VALUES ('john.doe','$2a$07$rBXvpd7mznYRADh2LKbhj.GEP3WvyYpvUmVyoqbRjDlEy5GNlLVh.', true);
-INSERT INTO users(user_name,password,enabled) VALUES ('john.admindoe','$2a$07$MlgVU4sAh0woZ1DCpOCvie92CTvhXIpCRAVsNNqZJ4aA4KcKfLPsK', true);
+-- create table if not exists oauth_client_details
+-- (
+--     client_id               VARCHAR(255) PRIMARY KEY,
+--     resource_ids            VARCHAR(255),
+--     client_secret           VARCHAR(255),
+--     scope                   VARCHAR(255),
+--     authorized_grant_types  VARCHAR(255),
+--     web_server_redirect_uri VARCHAR(255),
+--     authorities             VARCHAR(255),
+--     access_token_validity   INTEGER,
+--     refresh_token_validity  INTEGER,
+--     additional_information  VARCHAR(4096),
+--     autoapprove             VARCHAR(255)
+-- );
+-- -- --
+-- create table if not exists oauth_client_token
+-- (
+--     token_id          VARCHAR(255),
+--     token             bytea,
+--     authentication_id VARCHAR(255) PRIMARY KEY,
+--     user_name         VARCHAR(255),
+--     client_id         VARCHAR(255)
+-- );
 
-INSERT INTO user_roles (user_name, role) VALUES ('john.doe', 'ROLE_USER');
-INSERT INTO user_roles (user_name, role) VALUES ('john.admindoe', 'ROLE_ADMIN');
-INSERT INTO user_roles (user_name, role) VALUES ('john.admindoe', 'ROLE_USER');
+create table if not exists oauth_access_token
+(
+    token_id          VARCHAR(255),
+    token             bytea,
+    authentication_id VARCHAR(255) PRIMARY KEY,
+    user_name         VARCHAR(255),
+    client_id         VARCHAR(255),
+    authentication    bytea,
+    refresh_token     VARCHAR(255)
+);
+--
+create table if not exists oauth_refresh_token
+(
+    token_id       VARCHAR(255),
+    token          bytea,
+    authentication bytea
+);
+-- --
+-- create table if not exists oauth_code
+-- (
+--     code           VARCHAR(255),
+--     authentication bytea
+-- );
+-- -- --
+-- create table if not exists oauth_approvals
+-- (
+--     userId         VARCHAR(255),
+--     clientId       VARCHAR(255),
+--     scope          VARCHAR(255),
+--     status         VARCHAR(10),
+--     expiresAt      TIMESTAMP,
+--     lastModifiedAt TIMESTAMP
+-- );
+-- -- --
+-- create table if not exists client_details
+-- (
+--     appId                  VARCHAR(255) PRIMARY KEY,
+--     resourceIds            VARCHAR(255),
+--     appSecret              VARCHAR(255),
+--     scope                  VARCHAR(255),
+--     grantTypes             VARCHAR(255),
+--     redirectUrl            VARCHAR(255),
+--     authorities            VARCHAR(255),
+--     access_token_validity  INTEGER,
+--     refresh_token_validity INTEGER,
+--     additionalInformation  VARCHAR(4096),
+--     autoApproveScopes      VARCHAR(255)
+-- );

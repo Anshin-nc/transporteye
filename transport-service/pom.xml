@@ -55,7 +55,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <start-class>org.ncstudy.transportservice.Application</start-class>
+    <start-class>org.ncstudy.transportservice.front.Application</start-class>
     <docker.image.name>transporteye/transportservice</docker.image.name>
     <docker.image.tag>alpha</docker.image.tag>
   </properties>
